@@ -6,8 +6,12 @@ const todoList = document.querySelector('.todo-list');
 const todoCompleted = document.querySelector('.todo-completed');
 
 
-const todoData = [];
+let todoData = [];
 
+const pushToLocalStorage = function(){
+    localStorage.setItem('todoData', JSON.stringify(todoData));
+
+ }
 
 const render = function(){
     todoList.textContent = '';
@@ -53,7 +57,11 @@ const render = function(){
 }
 
 const showContent = function(){
-    todoData = JSON.parse(localStorage.getItem('todoData'));
+    if(localStorage.getItem('todoData') == null){
+        localStorage.setItem('todoData', JSON.stringify(todoData));
+    } else{
+        todoData = JSON.parse(localStorage.getItem('todoData'));
+    }
  }
 
 
